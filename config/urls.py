@@ -16,7 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from config_app.time_tracking_views import (
+    TimeEntryListCreateView,
+    TimeEntryDetailView,
+    TimeReportView,
+    StartTimerView,
+    StopTimerView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+
+    # Time Tracking APIs
+    path("api/time-entries/", TimeEntryListCreateView.as_view(), name="time-entry-list-create"),
+    path("api/time-entries/start-timer/", StartTimerView.as_view(), name="start-timer"),
+    path("api/time-entries/stop-timer/", StopTimerView.as_view(), name="stop-timer"),
+    path("api/time-entries/<str:entry_id>/", TimeEntryDetailView.as_view(), name="time-entry-detail"),
+    path("api/time-reports/", TimeReportView.as_view(), name="time-reports"),
 ]
