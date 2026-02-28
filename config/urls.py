@@ -23,6 +23,13 @@ from config_app.time_tracking_views import (
     StartTimerView,
     StopTimerView,
 )
+from config_app.automation_views import (
+    AutomationRuleListCreateView,
+    AutomationRuleDetailView,
+    AutomationRuleLogsView,
+    AutomationTriggerView,
+    AutomationTestRuleView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -33,4 +40,12 @@ urlpatterns = [
     path("api/time-entries/stop-timer/", StopTimerView.as_view(), name="stop-timer"),
     path("api/time-entries/<str:entry_id>/", TimeEntryDetailView.as_view(), name="time-entry-detail"),
     path("api/time-reports/", TimeReportView.as_view(), name="time-reports"),
+
+    # Automation APIs
+    path("api/automation-rules/", AutomationRuleListCreateView.as_view(), name="automation-rule-list-create"),
+    path("api/automation-rules/test/<str:rule_id>/", AutomationTestRuleView.as_view(), name="automation-test-rule"),
+    path("api/automation-rules/<str:rule_id>/logs/", AutomationRuleLogsView.as_view(), name="automation-rule-logs"),
+    path("api/automation-rules/<str:rule_id>/", AutomationRuleDetailView.as_view(), name="automation-rule-detail"),
+    path("api/automation/trigger/", AutomationTriggerView.as_view(), name="automation-trigger"),
 ]
+

@@ -134,6 +134,9 @@ CORS_ALLOW_ALL_ORIGINS = True  # For development only
 MONGODB_URI = os.getenv("mongodb_uri", "mongodb://localhost:27017/")
 MONGODB_DB_NAME = os.getenv("MONGODB_DB_NAME", "hackathon_7")
 
+# Teams Webhook
+TEAMS_WEBHOOK_URL = os.getenv("TEAMS_WEBHOOK_URL", "")
+
 # DRF settings
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
